@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; script-src 'self'">
+  <title>Dasto</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="brand"><span class="logo">◐</span><b>Dasto</b></div>
+    <div class="right">
+      <span id="dot" class="dot"></span><span id="status">Готов</span>
+      <button id="btnSettings" class="icon" title="Настройки">⚙</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="card">
+      <textarea id="task" rows="3" placeholder="Что сделать? Например: создай TikTok-аккаунт, найди нишу и оформи профиль"></textarea>
+      <div class="row">
+        <button id="btnStart" class="primary">▶ Старт</button>
+        <button id="btnStop" class="danger" disabled>■ Стоп</button>
+      </div>
+      <div class="hint">Аварийная остановка: <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd></div>
+    </section>
+
+    <section class="card grow"><div id="log"></div></section>
+    <footer id="usage">Шагов: 0 · Токенов: 0</footer>
+  </main>
+
+  <div id="settings" class="overlay hidden">
+    <div class="modal">
+      <h3>Настройки</h3>
+      <label>API-ключ Anthropic<input id="apiKey" type="password" autocomplete="off" placeholder="sk-ant-..."></label>
+      <label>Модель
+        <select id="model">
+          <option value="claude-fable-5-2">Claude Fable 5.2 (самая мощная)</option>
+          <option value="claude-opus-5-5">Claude Opus 5.5</option>
+          <option value="claude-sonnet-5-5">Claude Sonnet 5.5</option>
+          <option value="claude-haiku-5-5">Claude Haiku 5.5 (быстрая)</option>
+        </select>
+      </label>
+      <label>Лимит шагов<input id="maxSteps" type="number" min="1"></label>
+      <label>Лимит токенов<input id="maxTokens" type="number" min="1000"></label>
+      <details>
+        <summary>Расширенные</summary>
+        <label>Версия инструмента computer use<input id="toolVersion"></label>
+        <label>Beta-заголовок<input id="beta"></label>
+      </details>
+      <div class="row">
+        <button id="btnSave" class="primary">Сохранить</button>
+        <button id="btnClose" class="ghost">Закрыть</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="ask" class="overlay hidden">
+    <div class="modal">
+      <h3 id="askTitle">Вопрос</h3>
+      <p id="askMsg"></p>
+      <input id="askInput" class="hidden" placeholder="Твой ответ">
+      <div id="askActions" class="row"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
